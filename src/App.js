@@ -7,6 +7,8 @@ import Header from './components/header/Header';
 import ArticleList from './components/article/ArticleList';
 import Article from './components/article/Article';
 import AddPost from './components/post/AddPost';
+import Signup from './components/userAccounts/Signup';
+import Login from './components/userAccounts/Login';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/article-list" element={<ArticleList />} />
         <Route path="/article/:id" element={<Article />} />
         <Route path="/post/create" element={<AddPost />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
