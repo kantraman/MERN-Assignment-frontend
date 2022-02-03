@@ -12,7 +12,7 @@ const Article = () => {
         title: "",
         description: "",
         name: "",
-        upvotes: 0,
+        upvoters: [],
         comments: []
     });
 
@@ -26,13 +26,15 @@ const Article = () => {
         if (body !== { status: "Error" })
             setArticleData(body);
     }
+
+    
     if (!articleData.title) return <ErrorPage />
    
     return (
         <div className="blogPost">
             <h1 className="postTitle">{articleData.title}</h1>
             <h2 className="postAuthor">By {articleData.name}</h2>
-            <Upvote id={id} setArticleData={setArticleData} upvotes={articleData.upvotes} />
+            <Upvote id={id} setArticleData={setArticleData} upvoters={articleData.upvoters} />
             <pre className="postDescr">{articleData.description}</pre>
             <Comments comments={articleData.comments} />
             <AddComments id={id} setArticleData={setArticleData} />

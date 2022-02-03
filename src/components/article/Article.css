@@ -4,6 +4,25 @@
     padding: 10px;
 }
 
+.createBlog{
+    text-align: center;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    border: 1px solid midnightblue;
+    display:block;
+    margin: 0 auto;
+    width: 100px;
+    padding: 5px;
+    background-color: rebeccapurple;
+    color:white;
+}
+
+.createBlog:hover{
+    background-color: royalblue;
+    box-shadow: 0 0 10px midnightblue;
+}
+
 .articleList{
     display: flex;
     flex-direction: column;
@@ -14,6 +33,15 @@
     color:darkslateblue;
     line-height: 1.5em;
 }
+
+.articleList:hover{
+    color: royalblue;
+    transform: scale(1.5);
+}
+
+.articleList:hover ~ .articleList {
+    transform: translatey(25%);
+  }
 
 .blogPost{
     margin: 10px auto;
@@ -111,6 +139,10 @@
     background-color:darkslateblue;
     color: white;
     box-shadow: 0 0 10px midnightblue;
+}
+
+.hidden{
+    display: none;
 }
 
 

@@ -31,7 +31,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/article-list" element={<ArticleList />} />
+        <Route path="/article-list" element={<ArticleList admin={ token.admin }/>} />
         <Route path="/article/:id" element={<Article />} />
         <Route path="/post/create" element={<AddPost />} />
         <Route path="/logout" element={<Logout />} />

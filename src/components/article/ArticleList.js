@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import './Article.css';
 
 
-const ArticleList = () => {
+const ArticleList = ({admin}) => {
     const [posts, setPosts] = useState([]);
-
     useEffect(() => {
         fetchAPI();
     }, []);
@@ -19,9 +18,10 @@ const ArticleList = () => {
     return (
         <div>
             <h1 id="article">Blog Posts</h1>
+            <Link className={admin ? "createBlog" : "hidden"} to="/post/create">Create Post</Link>
             {
                 posts.map((i, key) => (
-                    <Link className="articleList articleLink" key={key} to={`/article/${i._id}`}>
+                    <Link className="articleList" key={key} to={`/article/${i._id}`}>
                         {i.title}
                     </Link>
                 ))

@@ -4,9 +4,9 @@ import ErrorPage from "../error/Error";
 import "../article/Article.css";
 
 const AddPost = (props) => {
-    //const { id, setArticleData } = props;
-    const [postValues, setPostValues] = useState({ title: "", description: "", name: "Srikanth R" });
     const { token } = useToken();
+    //const { id, setArticleData } = props;
+    const [postValues, setPostValues] = useState({ title: "", description: "", name: token.uname });
     function handleChange(event){
         const { name, value } = event.target;
         setPostValues({ ...postValues, [name]: value });
