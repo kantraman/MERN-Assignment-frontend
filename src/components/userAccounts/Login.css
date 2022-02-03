@@ -8,11 +8,11 @@
     color: midnightblue;
     width: 300px;
     margin: 12vh auto;
-    background-color:rgb(85, 126, 167, 0.6);
     padding: 20px;
     border-radius: 5%;
     border: 2px solid rebeccapurple;
     box-shadow: 0 0 5px mediumblue;
+    background-color:#ccc;
 }
 
 .signup h1{
@@ -56,4 +56,20 @@
     background-color:darkslateblue;
     color: white;
     box-shadow: 0 0 10px midnightblue;
+}
+
+.errorText{
+    color:red;
+    font-size:small;
+    font-family: monospace;
+}
+
+.signupLink{
+    display: block;
+    text-decoration: none;
+    font-family:Arial, Helvetica, sans-serif;
+    color:indigo;
+    margin-top: 20px;
+    text-align: right;
+    font-weight:bold;
 }

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import useToken from '../userAccounts/useToken';
 
 
 const AddComments = (props) => {
     const { id, setArticleData } = props;
-    const [commentValues, setCommentValues] = useState({ username: "", comment: "" });
+    const { token } = useToken();
+    const [commentValues, setCommentValues] = useState({ username: token.uname, comment: "" });
 
     function handleChange(event){
         const { name, value } = event.target;
@@ -23,7 +25,7 @@ const AddComments = (props) => {
             })
             const body = await response.json();
             setArticleData(body);
-            setCommentValues({ username: "", comment: "" });
+            setCommentValues({ comment: "" });
         }
     }
     return (
@@ -32,7 +34,7 @@ const AddComments = (props) => {
             <label>
                 Name:
                 <br></br>
-                <input type="text" name="username" value={commentValues.username} onChange={ handleChange }/>
+                <input type="text" name="username" value={commentValues.username} disabled/>
             </label>
             <br></br>
             <label>

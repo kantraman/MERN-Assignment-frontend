@@ -11,6 +11,7 @@ function Header(props) {
                     <Link className="link" to="/">Home</Link>
                     <Link className="link" to="/about">About</Link>
                     <Link className="link" to="/article-list">Articles</Link>
+                    <Link className="logout" to="/logout">Logout</Link>
                 </div>
             </nav>
         </div>

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import "../article/Article.css"
+import useToken from "../userAccounts/useToken";
+import ErrorPage from "../error/Error";
+import "../article/Article.css";
 
 const AddPost = (props) => {
     //const { id, setArticleData } = props;
     const [postValues, setPostValues] = useState({ title: "", description: "", name: "Srikanth R" });
-
+    const { token } = useToken();
     function handleChange(event){
         const { name, value } = event.target;
         setPostValues({ ...postValues, [name]: value });
@@ -26,7 +28,7 @@ const AddPost = (props) => {
             
             if (body.status === "Success") {
                 alert("Post Successful");
-                setPostValues({ title: "", description: "", name: "Srikanth R" });
+                setPostValues({ title: "", description: "", name: "Srikanth" });
             } else {
                 alert("Post Unsuccessful!");
             }
@@ -35,6 +37,7 @@ const AddPost = (props) => {
             alert("Enter all required fields.");
         }
     }
+    if(!token.admin) return <ErrorPage />
     return (
         <div className="blogPost">
             <div className="addComment">

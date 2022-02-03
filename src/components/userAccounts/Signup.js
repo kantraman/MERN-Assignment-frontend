@@ -14,7 +14,6 @@ const Signup = () => {
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormValues({ ...formValues, [name]: value });
-        console.log(formValues);
     }
     //Manage form submit
     const handleSubmit = (event) => {
@@ -40,7 +39,7 @@ const Signup = () => {
             
         if (body.status === "Success") {
             alert("Signup Successful");
-            navigate("/login", { replace: true });
+            navigate("/", { replace: true });
         } else {
             alert("Signup Unsuccessful!");
         }
