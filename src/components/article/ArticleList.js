@@ -32,7 +32,7 @@ const ArticleList = ({admin}) => {
                         <Link className={admin ? "articleListItem" : "hidden"} to={`/post/update/${i._id}`}>
                             ✍
                         </Link>
-                        <Link onClick={confirmDelete} className={admin ? "articleListItem" : "hidden"} to={`/post/delete/${i._id}`}>
+                        <Link onClick={confirmDelete} className={admin ? "articleListItem icon" : "hidden"} to={`/post/delete/${i._id}`}>
                             🗑
                         </Link>
                     </div>

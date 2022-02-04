@@ -5,6 +5,7 @@ import Upvote from './Upvote';
 import AddComments from './AddComments';
 import ErrorPage from '../error/Error';
 import "./Article.css"
+import Preloader from './PreLoader';
 
 const Article = () => {
     const { id } = useParams();
@@ -15,6 +16,7 @@ const Article = () => {
         upvoters: [],
         comments: []
     });
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetchAPI();
@@ -25,10 +27,14 @@ const Article = () => {
         const body = await response.json();
         if (body !== { status: "Error" })
             setArticleData(body);
+        setLoading(false);
     }
 
     
-    if (!articleData.title) return <ErrorPage />
+    if (!articleData.title) 
+        return (<><Preloader loading={loading} /><ErrorPage /></>);
+    
+        
    
     return (
         <div className="blogPost">

@@ -11,6 +11,8 @@ import Signup from './components/userAccounts/Signup';
 import Login from './components/userAccounts/Login';
 import useToken from './components/userAccounts/useToken';
 import Logout from './components/userAccounts/Logout';
+import UpdatePost from './components/post/UpdatePost';
+import DeletePost from './components/post/DeletePost';
 
 function App() {
   const { token, setToken } = useToken();
@@ -34,6 +36,8 @@ function App() {
         <Route path="/article-list" element={<ArticleList admin={ token.admin }/>} />
         <Route path="/article/:id" element={<Article />} />
         <Route path="/post/create" element={<AddPost />} />
+        <Route path="/post/update/:id" element={<UpdatePost />} />
+        <Route path="/post/delete/:id" element={<DeletePost />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>

@@ -1,46 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router';
 import useToken from "../userAccounts/useToken";
 import ErrorPage from "../error/Error";
 import "../article/Article.css";
+import Preloader from '../article/PreLoader';
 
-const AddPost = () => {
+const UpdatePost = () => {
     const { token } = useToken();
-    const [postValues, setPostValues] = useState({ title: "", description: "", name: token.uname });
+    const { id } = useParams();
+    const [postValues, setPostValues] = useState({ title: "", description: "" });
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        fetchAPI();
+    }, [id]);
+
+    async function fetchAPI() {
+        const response = await fetch(`/api/posts/${id}`);
+        const body = await response.json();
+        if (body !== { status: "Error" })
+            setPostValues({ title: body.title, description: body.description });
+        setLoading(false);
+    }
+
     function handleChange(event){
         const { name, value } = event.target;
         setPostValues({ ...postValues, [name]: value });
     }
     async function fetchPost() {
-        const name = postValues.name;
         const title = postValues.title;
         const description = postValues.description;
 
         if (title !== "" && description !== "") {
-            const response = await fetch(`/api/posts/post`, {
+            const response = await fetch(`/api/posts/${id}/update`, {
                 method: 'post',
-                body: JSON.stringify({ title, description, name }),
+                body: JSON.stringify({ title, description}),
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
             const body = await response.json();
             
-            if (body.status === "Success") {
-                alert("Post Successful");
-                setPostValues({ title: "", description: "", name: token.uname });
+            if (body.status !== "Error") {
+                alert("Post Update Successful.");
+                navigate(`/article/${id}`, { replace: true });
             } else {
-                alert("Post Unsuccessful!");
+                alert("Post Update Unsuccessful!");
             }
             
         } else {
             alert("Enter all required fields.");
         }
     }
+    if (!postValues.title) 
+        return (<><Preloader loading={loading} /><ErrorPage /></>);
     if(!token.admin) return <ErrorPage />
     return (
         <div className="blogPost">
             <div className="addComment">
-                <h3 className='commentHeading'>Add a Blog Post</h3>
+                <h3 className='commentHeading'>Update a Blog Post</h3>
                 <label>
                     Title:
                     <br></br>
@@ -59,4 +78,4 @@ const AddPost = () => {
     );
 };
 
-export default AddPost;
+export default UpdatePost;
