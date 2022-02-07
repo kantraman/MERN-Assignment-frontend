@@ -23,7 +23,8 @@ const Upvote = (props) => {
             method: 'post',
             body: JSON.stringify({ username }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token.token}`
             }
             
         });

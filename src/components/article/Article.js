@@ -7,7 +7,7 @@ import ErrorPage from '../error/Error';
 import "./Article.css"
 import Preloader from './PreLoader';
 
-const Article = () => {
+const Article = ({token}) => {
     const { id } = useParams();
     const [articleData, setArticleData] = useState({
         title: "",
@@ -23,7 +23,12 @@ const Article = () => {
     }, [id]);
 
     async function fetchAPI() {
-        const response = await fetch(`/api/posts/${id}`);
+        const response = await fetch(`/api/posts/${id}`, {
+            method: 'get',
+            headers: {
+                'Authorization': `Bearer ${token.token}`
+            }
+        });
         const body = await response.json();
         if (body !== { status: "Error" })
             setArticleData(body);

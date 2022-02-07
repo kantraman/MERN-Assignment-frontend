@@ -3,15 +3,22 @@ import { Link } from 'react-router-dom';
 import './Article.css';
 
 
-const ArticleList = ({admin}) => {
+const ArticleList = ({token}) => {
     const [posts, setPosts] = useState([]);
+    const admin = token.admin;
     useEffect(() => {
         fetchAPI();
     }, []);
 
     async function fetchAPI() {
-        const response = await fetch(`/api/posts`);
+        const response = await fetch(`/api/posts`, {
+            method: 'get',
+            headers: {
+                    'Authorization': `Bearer ${token.token}`
+                }
+        });
         const body = await response.json();
+        console.log(body);
         setPosts(body);
     }
     const confirmDelete = (event) => {

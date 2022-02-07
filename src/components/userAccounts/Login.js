@@ -36,7 +36,7 @@ const Login = ({setToken}) => {
             }
         })
         const body = await response.json();
-        console.log(body);
+        
         if (body.uname === uname) {
             setToken(body);
             navigate("/article-list", { replace: true });

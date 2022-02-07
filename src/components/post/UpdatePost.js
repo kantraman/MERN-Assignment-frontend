@@ -17,7 +17,12 @@ const UpdatePost = () => {
     }, [id]);
 
     async function fetchAPI() {
-        const response = await fetch(`/api/posts/${id}`);
+        const response = await fetch(`/api/posts/${id}`,{
+            method: 'get',
+            headers: {
+                'Authorization': `Bearer ${token.token}`
+            }
+        });
         const body = await response.json();
         if (body !== { status: "Error" })
             setPostValues({ title: body.title, description: body.description });
@@ -37,7 +42,8 @@ const UpdatePost = () => {
                 method: 'post',
                 body: JSON.stringify({ title, description}),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token.token}`
                 }
             })
             const body = await response.json();

@@ -18,7 +18,12 @@ const DeletePost = () => {
     }, [id]);
 
     async function fetchAPI() {
-        const response = await fetch(`/api/posts/${id}`);
+        const response = await fetch(`/api/posts/${id}`, {
+            method: 'get',
+            headers: {
+                'Authorization': `Bearer ${token.token}`
+            }
+        });
         const body = await response.json();
         if (body !== { status: "Error" })
             setPostValues({ title: body.title, description: body.description });
@@ -28,6 +33,9 @@ const DeletePost = () => {
     async function fetchPost() {
         const response = await fetch(`/api/posts/${id}/delete`, {
             method: 'post',
+            headers: {
+                'Authorization': `Bearer ${token.token}`
+            }
         })
         const body = await response.json();
             

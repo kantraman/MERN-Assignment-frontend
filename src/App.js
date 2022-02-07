@@ -20,8 +20,10 @@ function App() {
   if(!token) {
     return (
       <Router>
+        <Header token={ token }/>
         <Routes>
-          <Route path="*" element={<Login setToken={setToken} />} />
+          <Route path="*" element={<Home />} />
+          <Route path="/login" element={<Login setToken={setToken} />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
       </Router>
@@ -29,12 +31,12 @@ function App() {
   }
   return (
     <Router>
-      <Header />
+      <Header token={ token } />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/article-list" element={<ArticleList admin={ token.admin }/>} />
-        <Route path="/article/:id" element={<Article />} />
+        <Route path="/article-list" element={<ArticleList token={ token }/>} />
+        <Route path="/article/:id" element={<Article token={ token } />} />
         <Route path="/post/create" element={<AddPost />} />
         <Route path="/post/update/:id" element={<UpdatePost />} />
         <Route path="/post/delete/:id" element={<DeletePost />} />

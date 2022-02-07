@@ -39,7 +39,7 @@ const Signup = () => {
             
         if (body.status === "Success") {
             alert("Signup Successful");
-            navigate("/", { replace: true });
+            navigate("/login", { replace: true });
         } else {
             alert("Signup Unsuccessful!");
         }

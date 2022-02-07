@@ -29,6 +29,10 @@
     color: whitesmoke;
 }
 
+.hidden{
+    display: none;
+}
+
 .logout{
     padding: 5px;
     text-decoration: none;

@@ -20,7 +20,8 @@ const AddPost = () => {
                 method: 'post',
                 body: JSON.stringify({ title, description, name }),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token.token}`
                 }
             })
             const body = await response.json();

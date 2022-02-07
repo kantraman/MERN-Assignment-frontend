@@ -20,7 +20,8 @@ const AddComments = (props) => {
                 method: 'post',
                 body: JSON.stringify({ username, text }),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token.token}`
                 }
             })
             const body = await response.json();
